@@ -8,3 +8,9 @@ mod0_test()
 
 #%% [code]
 print("I've been modified")
+
+#%% [markdown]
+# ## More markdown
+
+#%% [code]
+print("I've been modified again")
