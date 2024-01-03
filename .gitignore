@@ -6,3 +6,4 @@
 !Snakefile
 !env.txt
 !.gitignore
+!data/data.csv

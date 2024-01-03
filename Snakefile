@@ -1,32 +1,17 @@
-""" Scripts
-
-Running the base scripts that make up the project
-
-"""
-rule run0:
-    shell:
-        "python src/run_mod0.py"
-
-rule run1:
-    shell:
-        "python src/run_mod1.py"
-
-rule force_all:
-    shell:
-        """
-        python src/run_mod0.py \
-        && python src/run_mod1.py
-        """
+# other files for small rules to keep this file tidy
+include: "snakemake/data.smk"
+include: "snakemake/notebooks.smk"
+include: "snakemake/housekeeping.smk"
 
 
-""" Notebooks
+# TODO: switch to using input and output directives to take advantage of snakemake's caching
+# TODO: pass the data file as a parameter to the pipeline to the notebooks
+""" Pipeline
 
-Convert the scripts to notebooks (using the jupytext method)
+The "official" pipeline
 
 """
-
-# formats code, creates ipynbs from source files, executes them, write pdfs for easy reading
-rule build_pdfs:
+rule run_on_subset:
     shell:
         """
         black src/ \
@@ -37,12 +22,20 @@ rule build_pdfs:
         """
 
 
-""" Housekeeping
-
-Misc stuff to keep things tidy
-
-"""
-
-rule format_source:
+rule run_on_full:
     shell:
-        "black src/"
+        """
+        black src/ \
+        && jupytext src/*.py --to notebook \
+        && jupyter nbconvert --execute --to pdf src/*.ipynb \
+        && mv src/*.ipynb notebooks \
+        && mv src/*.pdf notebooks
+        """
+
+
+
+
+
+
+
+
