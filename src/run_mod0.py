@@ -1,16 +1,16 @@
-#%% [markdown]
+# %% [markdown]
 # # Run mod0
 
-#%% [code]
+# %% [code]
 from mod0.utils import mod0_test
 
 mod0_test()
 
-#%% [code]
+# %% [code]
 print("I've been modified")
 
-#%% [markdown]
+# %% [markdown]
 # ## More markdown
 
-#%% [code]
+# %% [code]
 print("I've been modified again")

@@ -25,11 +25,12 @@ Convert the scripts to notebooks (using the jupytext method)
 
 """
 
-# creates ipynbs from source files, executes them, write pdfs for easy reading
-rule run_notebooks_pdf:
+# formats code, creates ipynbs from source files, executes them, write pdfs for easy reading
+rule build_pdfs:
     shell:
         """
-        jupytext src/*.py --to notebook \
+        black src/ \
+        && jupytext src/*.py --to notebook \
         && jupyter nbconvert --execute --to pdf src/*.ipynb \
         && mv src/*.ipynb notebooks \
         && mv src/*.pdf notebooks
