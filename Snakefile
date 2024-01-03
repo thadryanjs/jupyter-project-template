@@ -18,27 +18,23 @@ rule force_all:
         && python src/run_mod1.py
         """
 
+
 """ Notebooks
 
 Convert the scripts to notebooks (using the jupytext method)
 
 """
 
-# convert all scripts to notebooks (doesn't run them)
-rule make_all_notebooks:
+# creates ipynbs from source files, executes them, write pdfs for easy reading
+rule run_notebooks_pdf:
     shell:
         """
-        jupytext src/*.py --to notebook
-        """
-
-# execute and write pdfs for easy reading
-rule run_all_notebooks:
-    shell:
-        """
-        jupyter nbconvert --execute --to pdf src/*.ipynb \
+        jupytext src/*.py --to notebook \
+        && jupyter nbconvert --execute --to pdf src/*.ipynb \
         && mv src/*.ipynb notebooks \
         && mv src/*.pdf notebooks
         """
+
 
 """ Housekeeping
 
