@@ -2,6 +2,7 @@
 
 !*.py
 !*.ipynb
+!*.md
 !Snakefile
 !env.txt
 !.gitignore
