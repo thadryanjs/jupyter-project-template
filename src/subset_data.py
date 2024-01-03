@@ -28,6 +28,6 @@ print(df_sample.head())
 
 # %% [code]
 # write the sample to a new csv file
-output_filepath = path.join(current_path, "..", "data_sample.csv")
+output_filepath = path.join(current_path, "..", "data/data_sample.csv")
 
 df_sample.to_csv(output_filepath, index=False)
