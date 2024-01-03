@@ -1,0 +1,7 @@
+*.*
+
+!*.py
+!*.ipynb
+!Snakefile
+!env.txt
+!.gitignore
